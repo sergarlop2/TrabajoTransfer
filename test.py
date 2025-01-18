@@ -27,7 +27,7 @@ test_loader = DataLoader(test_dataset, batch_size=20, shuffle=False)
 # Cargamos nuestro modelo ResNet50 para frutas
 model = models.resnet50(weights=None)
 model.fc = torch.nn.Linear(model.fc.in_features, 5) # 5 clases
-model.load_state_dict(torch.load("best_fruit_model.pt", weights_only=True))
+model.load_state_dict(torch.load("best_fruit_model.pt", weights_only=True, map_location=torch.device('cpu')))
 
 # Mover el modelo a GPU si está disponible
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
